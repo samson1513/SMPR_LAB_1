@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg_selected_cell">#283</color>
+    <color name="bg_unselected_cell">#555</color>
+    <color name="bg_correct">#32dd24</color>
+    <color name="bg_incorrect">#ee1234</color>
+    <color name="bg_property">#78abcf</color>
+</resources>

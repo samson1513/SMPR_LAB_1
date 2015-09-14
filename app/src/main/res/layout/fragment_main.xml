@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="35">
+
+        <RelativeLayout
+            android:id="@+id/rlGraph"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible">
+
+            <com.example.samson.smpr_lab_1.custom.GraphView
+                android:id="@+id/graphView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlMatrix"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:visibility="visible">
+
+            <com.example.samson.smpr_lab_1.custom.SquareMatrix
+                android:id="@+id/matrix"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="@dimen/default_margin"
+                android:layout_marginLeft="@dimen/default_margin"
+                android:layout_marginTop="@dimen/default_margin"
+                android:layout_toLeftOf="@+id/rlSize"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:gravity="center" />
+
+            <RelativeLayout
+                android:id="@+id/rlSize"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_margin="@dimen/default_margin"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/ibMore"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_above="@+id/tvCount"
+                    android:layout_gravity="center"
+                    android:src="@drawable/plus" />
+
+                <TextView
+                    android:id="@+id/tvCount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/ibMore"
+                    android:layout_alignRight="@+id/ibMore"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:background="@android:color/white"
+                    android:gravity="center"
+                    android:text="0" />
+
+                <ImageButton
+                    android:id="@+id/ibLess"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_below="@+id/tvCount"
+                    android:layout_gravity="center"
+                    android:src="@drawable/minus" />
+
+                <ImageButton
+                    android:id="@+id/btnRefresh"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_alignParentBottom="true"
+                    android:src="@drawable/refresh"
+                    android:text="@string/btn_refresh" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_property"
+        android:layout_weight="65">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/btnCheck"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <CheckBox
+                        android:id="@+id/cbReflexive"
+                        android:text="@string/reflexive"
+                        style="@style/CheckItem" />
+
+                    <CheckBox
+                        android:id="@+id/cbIrreflexive"
+                        android:text="@string/irreflexive"
+                        style="@style/CheckItem" />
+
+                    <CheckBox
+                        android:id="@+id/cbSymmetry"
+                        android:text="@string/symmetry"
+                        style="@style/CheckItem" />
+
+                    <CheckBox
+                        android:id="@+id/cbAsymmetry"
+                        android:text="@string/asymmetry"
+                        style="@style/CheckItem" />
+
+                    <CheckBox
+                        android:id="@+id/cbAntisymmetry"
+                        android:text="@string/antisymmetry"
+                        style="@style/CheckItem" />
+
+                    <CheckBox
+                        android:id="@+id/cbTransitive"
+                        android:text="@string/transitive"
+                        style="@style/CheckItem" />
+
+                    <CheckBox
+                        android:id="@+id/cbTotal"
+                        android:text="@string/total"
+                        style="@style/CheckItem" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/cbRMax"
+                            android:text="@string/r_max"
+                            style="@style/CheckItem" />
+
+                        <HorizontalScrollView
+                            android:id="@+id/horizontalScrollView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/default_margin_small"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/tvRMax"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:textSize="20sp" />
+                        </HorizontalScrollView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/cbRMin"
+                            android:text="@string/r_min"
+                            style="@style/CheckItem" />
+
+                        <HorizontalScrollView
+                            android:id="@+id/horizontalScrollView2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/default_margin_small"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/tvRMin"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:textSize="20sp" />
+
+                        </HorizontalScrollView>
+                    </LinearLayout>
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnCheck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="@dimen/default_margin"
+            android:layout_marginRight="@dimen/default_margin"
+            android:text="@string/btn_check" />
+
+        <Button
+            android:id="@+id/btnShowGraph"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/default_margin"
+            android:layout_marginRight="@dimen/default_margin"
+            android:layout_toLeftOf="@+id/btnCheck"
+            android:text="@string/btn_show_g"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/btnShowMatrix"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/default_margin"
+            android:layout_marginRight="@dimen/default_margin"
+            android:layout_toLeftOf="@+id/btnCheck"
+            android:text="@string/btn_show_m"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+</LinearLayout>

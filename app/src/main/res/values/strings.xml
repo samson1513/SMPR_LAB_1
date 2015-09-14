@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">SMPR_LAB_1</string>
+
+    <string name="reflexive">Reflexive</string>
+    <string name="irreflexive">Irreflexive</string>
+    <string name="symmetry">Symmetry</string>
+    <string name="asymmetry">Asymmetry</string>
+    <string name="antisymmetry">Antisymmetry</string>
+    <string name="transitive">Transitive</string>
+    <string name="total">Total</string>
+    <string name="r_max">R-max</string>
+    <string name="r_min">R-min</string>
+
+    <string name="btn_check">Check</string>
+    <string name="btn_show_g">Graph</string>
+    <string name="btn_show_m">Matrix</string>
+    <string name="btn_refresh">Refresh</string>
+</resources>
