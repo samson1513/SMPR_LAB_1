@@ -394,6 +394,6 @@ public class MainFragment extends Fragment implements View.OnClickListener, Adap
     }
 
     private void newFunc(){
-
+        return;
     }
 }
