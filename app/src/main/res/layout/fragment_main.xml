@@ -204,8 +204,66 @@
 
                         </HorizontalScrollView>
                     </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:text="X = "
+                                android:id="@+id/textView"
+                                style="@style/CheckItem"  />
+
+                            <TextView
+                                style="@style/CheckItem"
+                                android:id="@+id/tvSubEnum"
+                                android:layout_weight="1" />
+
+                            <EditText
+                                android:layout_width="50dp"
+                                android:layout_height="match_parent"
+                                android:id="@+id/etEnum"
+                                android:inputType="number"
+                                android:background="#fff" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/ivAdd"
+                                android:src="@drawable/plus"
+                                android:layout_margin="7dp" />
+
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:layout_height="match_parent"
+                                android:src="@android:drawable/ic_menu_search"
+                                android:id="@+id/ivFind" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:text="C(X) = "
+                                style="@style/CheckItem"
+                                android:id="@+id/textView2" />
+
+                            <TextView
+                                style="@style/CheckItem"
+                                android:id="@+id/tvFunc" />
+                        </LinearLayout>
+                    </LinearLayout>
                 </LinearLayout>
             </ScrollView>
+
         </LinearLayout>
 
         <Button

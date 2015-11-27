@@ -106,4 +106,32 @@ public class Property {
         }
         return result;
     }
+
+    public static int[][] getSubmatrix(int[][] matrix, int n, ArrayList<Integer> nodes){
+        int size = n - nodes.size();
+        int[][] submatrix = new int[size][size];
+        int[][] temp = matrix;
+        int start = 0, end = n;
+        for(int node : nodes){
+            if(node == 0){
+                ++start;
+            } else if(node == n - 1){
+                --end;
+            } else {
+                for(int i = start; i < end; ++i){
+                    temp[i][node] = temp[i][node + 1];
+                }
+                --end;
+                for(int i = start; i < end; ++i){
+                    temp[node][i] = temp[node + 1][i];
+                }
+            }
+        }
+        for(int i = start; i < end; ++i){
+            for(int j = start; j < end; ++j){
+                submatrix[i - start][j - start] = temp[i][j];
+            }
+        }
+        return submatrix;
+    }
 }

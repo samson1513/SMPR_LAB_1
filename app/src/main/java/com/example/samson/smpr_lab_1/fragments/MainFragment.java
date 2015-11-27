@@ -9,8 +9,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,9 +29,11 @@ public class MainFragment extends Fragment implements View.OnClickListener, Adap
 
     private MainActivity activity;
     private GridView mMatrix;
+    private EditText etEnum;
+    private ImageView ivFind, ivAdd;
     private ImageButton mMore, mLess, mRefresh;
     private Button mCheck, mShowGraph, mShowMatrix;
-    private TextView mCount, tvRmax, tvRmin;
+    private TextView mCount, tvRmax, tvRmin, tvFunc, tvSubenum;
     private CheckBox cbRef, cbIrref, cbSym, cbAsym, cbAntiSym, cbTran, cbTotal, cbRmax, cbRmin;
     private CheckBox[] checkGroup;
     private MatrixAdapter adapter;
@@ -68,6 +72,8 @@ public class MainFragment extends Fragment implements View.OnClickListener, Adap
         mCount = (TextView) view.findViewById(R.id.tvCount);
         tvRmax = (TextView) view.findViewById(R.id.tvRMax);
         tvRmin = (TextView) view.findViewById(R.id.tvRMin);
+        tvSubenum = (TextView) view.findViewById(R.id.tvSubEnum);
+        tvFunc = (TextView) view.findViewById(R.id.tvFunc);
         rlMatrix = (RelativeLayout) view.findViewById(R.id.rlMatrix);
         rlGraph = (RelativeLayout) view.findViewById(R.id.rlGraph);
         graph = (GraphView) view.findViewById(R.id.graphView);
@@ -80,6 +86,9 @@ public class MainFragment extends Fragment implements View.OnClickListener, Adap
         cbTotal = (CheckBox) view.findViewById(R.id.cbTotal);
         cbRmax = (CheckBox) view.findViewById(R.id.cbRMax);
         cbRmin = (CheckBox) view.findViewById(R.id.cbRMin);
+        etEnum = (EditText) view.findViewById(R.id.etEnum);
+        ivFind = (ImageView) view.findViewById(R.id.ivFind);
+        ivAdd = (ImageView) view.findViewById(R.id.ivAdd);
         initCheckGroup();
     }
 
@@ -103,6 +112,8 @@ public class MainFragment extends Fragment implements View.OnClickListener, Adap
         cbTotal.setOnClickListener(this);
         cbRmax.setOnClickListener(this);
         cbRmin.setOnClickListener(this);
+        ivFind.setOnClickListener(this);
+        ivAdd.setOnClickListener(this);
         mMatrix.setOnItemClickListener(this);
     }
 
@@ -138,6 +149,12 @@ public class MainFragment extends Fragment implements View.OnClickListener, Adap
                 break;
             case R.id.btnRefresh:
                 refresh();
+                break;
+            case R.id.ivFind:
+                checkFunc();
+                break;
+            case R.id.ivAdd:
+                addToSubenum();
                 break;
             case R.id.cbReflexive:
                 setCheckProperty(0);
@@ -229,11 +246,60 @@ public class MainFragment extends Fragment implements View.OnClickListener, Adap
         }
 
         clearEnumR();
+        sub.clear();
+    }
+
+    private ArrayList<Integer> sub = new ArrayList<>();
+
+    private void addToSubenum(){
+        String node = etEnum.getText().toString();
+        if(node.length() != 0 && Integer.decode(node) <= sizeMatrix){
+            sub.add(Integer.decode(node)- 1);
+            etEnum.setText("");
+            tvSubenum.append(node + " ");
+        }
+    }
+
+    private void checkFunc(){
+        if(sub.size() != 0){
+            transformMatrix();
+            int[] temp = new int[sizeMatrix];
+            for(int item : sub){
+                temp[item] = 1;
+            }
+            ArrayList<Integer> unsub = new ArrayList<>();
+            for(int i = sizeMatrix - 1; i >=0; --i){
+                if(temp[i] == 0){
+                    unsub.add(i);
+                }
+            }
+
+            int[][] submatrix = Property.getSubmatrix(matrix, sizeMatrix, unsub);
+
+            ArrayList<Integer> vectorMatrix = new ArrayList<>();
+            for(int i = 0; i <submatrix.length; ++i){
+                for(int j = 0; j < submatrix.length; ++j){
+                    vectorMatrix.add(submatrix[i][j]);
+                }
+            }
+            mMatrix.setNumColumns(submatrix.length);
+            adapter.updateMatrix(vectorMatrix);
+
+            ArrayList<Integer> rez = Property.sendRmax(submatrix, sizeMatrix - unsub.size());
+            String message = "{";
+            for(int item : rez){
+                message += " " + (sub.get(item - 1) + 1) + " ";
+            }
+            message += "}";
+            tvFunc.setText(message);
+        }
     }
 
     private void clearEnumR(){
         tvRmin.setText("");
         tvRmax.setText("");
+        tvFunc.setText("");
+        tvSubenum.setText("");
     }
 
     private void getResult(){
